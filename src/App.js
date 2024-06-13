@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Grid from './components/Grid';
 import './App.css';
 
 function App() {
+  const [running, setRunning] = useState(false);
+
+  const toggleRunning = () => {
+    setRunning(!running);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Conway's Game of Life</h1>
       </header>
+      <div className="App-content">
+        <div className="Button-container">
+          <button onClick={toggleRunning}>
+            {running ? 'Stop' : 'Start'}
+          </button>
+          <button onClick={() => window.location.reload()}>
+            Reset
+          </button>
+        </div>
+        <Grid rows={20} columns={20} running={running} />
+      </div>
     </div>
   );
 }

@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Conway's Game of Life
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a mini-project built for fun and to practice and review React concepts. The project implements Conway's Game of Life, a cellular automaton devised by the British mathematician John Horton Conway in 1970.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+- **React**: A JavaScript library for building user interfaces.
+- **Styled Components**: Utilized for component-level styling.
+- **Vercel**: Platform for deployment and hosting.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The project is structured as follows:
 
-### `npm test`
+- **src/components**: Contains the `Grid` component that renders the Game of Life grid.
+- **src/App.js**: The main application file that includes the `Grid` component.
+- **src/index.js**: The entry point of the React application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Interactive grid where users can toggle cells between alive and dead states.
+- Automatic updating of the grid according to the rules of Conway's Game of Life.
+- Deployed on Vercel for easy access and demonstration.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Run the Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Local Development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/conways-game-of-life.git
+   cd conways-game-of-life
+   ```
 
-### `npm run eject`
+2. **Install dependencies:**
+   ```bash
+  npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Start the development server:**
+   ```bash
+  npm start
+   ```
+The app will be available at http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The project is deployed on Vercel. To deploy your own instance:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Create a Vercel account at Vercel.**
 
-## Learn More
+2. **Install the Vercel CLI:**
+   ```bash
+  npm install -g vercel
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Deploy the project:**
+   ```bash
+  vercel
+   ```
+Follow the prompts to deploy your project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Goals
 
-### Code Splitting
+- Practice and reinforce React concepts.
+- Gain experience with component-level styling using Styled Components.
+- Deploy a project using Vercel to gain experience with modern deployment workflows.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Enhancements
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add buttons for starting, stopping, and resetting the game.
+- Improve the styling for better user experience.
+- Optimize performance for larger grids.
+- Add tests for the grid update logic and UI components.
