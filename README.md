@@ -1,5 +1,7 @@
 # Conway's Game of Life
 
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-brightgreen)](https://conways-game-of-life-mv2yrvgga-guillermos-projects-cd31575a.vercel.app)
+
 ## Overview
 
 This is a mini-project built for fun and to practice and review React concepts. The project implements Conway's Game of Life, a cellular automaton devised by the British mathematician John Horton Conway in 1970.
