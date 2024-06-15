@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(${props => props.columns}, 1fr);
-  grid-template-rows: repeat(${props => props.rows}, 1fr);
+  grid-template-columns: repeat(${props => props.columns}, minmax(0, 1fr));
+  grid-template-rows: repeat(${props => props.rows}, minmax(0, 1fr));
   width: 100%;
-  height: calc(100vh - 150px);
+  height: 100%;
   max-width: 100%;
+  max-height: calc(100vh - 150px);
 `;
 
 const Cell = styled.div`
@@ -21,6 +22,12 @@ const Grid = ({ rows, columns, running }) => {
   const [grid, setGrid] = useState(Array.from({ length: rows }, () =>
     Array.from({ length: columns }, () => 0)
   ));
+
+  useEffect(() => {
+    setGrid(Array.from({ length: rows }, () =>
+      Array.from({ length: columns }, () => 0)
+    ));
+  }, [rows, columns]);
 
   const updateGrid = useCallback(() => {
     const nextGrid = grid.map((arr) => [...arr]);
@@ -71,8 +78,11 @@ const Grid = ({ rows, columns, running }) => {
     setGrid(newGrid);
   };
 
+  // Calculate the optimal cell size to fit within the viewport
+  const cellSize = `min(calc((100vw - 20px) / ${columns}), calc((100vh - 150px) / ${rows}))`;
+
   return (
-    <GridWrapper rows={rows} columns={columns}>
+    <GridWrapper rows={rows} columns={columns} style={{ gridAutoRows: cellSize, gridAutoColumns: cellSize }}>
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => (
           <Cell
