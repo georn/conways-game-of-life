@@ -11,6 +11,7 @@ This is a mini-project built for fun and to practice and review React concepts. 
 - **React**: A JavaScript library for building user interfaces.
 - **Styled Components**: Utilized for component-level styling.
 - **Vercel**: Platform for deployment and hosting.
+- **GitHub Actions**: For Continuous Integration and Continuous Deployment (CI/CD).
 
 ## Project Structure
 
@@ -38,12 +39,12 @@ The project is structured as follows:
 
 2. **Install dependencies:**
    ```bash
-  npm install
+   npm install
    ```
 
 3. **Start the development server:**
    ```bash
-  npm start
+   npm start
    ```
 The app will be available at http://localhost:3000.
 
@@ -51,24 +52,26 @@ The app will be available at http://localhost:3000.
 
 The project is deployed on Vercel. To deploy your own instance:
 
-1. **Create a Vercel account at Vercel.**
+1. **Create a Vercel account at [Vercel](https://vercel.com/).**
 
 2. **Install the Vercel CLI:**
    ```bash
-  npm install -g vercel
+   npm install -g vercel
    ```
 
-3. **Deploy the project:**
-   ```bash
-  vercel
-   ```
-Follow the prompts to deploy your project.
+3. **Set up GitHub Actions for CI/CD:**
+ - Add the `ci.yml` workflow file in `.github/workflows/ci.yml`.
+ - Add the required secrets (`VERCEL_TOKEN`, `VERCEL_PROJECT_ID`, `VERCEL_ORG_ID`) to your GitHub repository settings.
+
+ 4. **Deploy the project:**
+ - Push your code to GitHub.
+ - GitHub Actions will automatically run tests and deploy the project to Vercel if the tests pass.
 
 ## Project Goals
 
 - Practice and reinforce React concepts.
 - Gain experience with component-level styling using Styled Components.
-- Deploy a project using Vercel to gain experience with modern deployment workflows.
+- Deploy a project using Vercel and GitHub Actions to gain experience with modern deployment workflows.
 
 ## Future Enhancements
 
