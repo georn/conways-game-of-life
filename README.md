@@ -75,7 +75,12 @@ The project is deployed on Vercel. To deploy your own instance:
 
 ## Future Enhancements
 
-- <s> Add buttons for starting, stopping, and resetting the game. </s>
+- <s>Add buttons for starting, stopping, and resetti ng the game.</s>
+- <s>Add tests for the grid update logic and UI components.</s>
 - Improve the styling for better user experience.
 - Optimize performance for larger grids.
-- <s> Add tests for the grid update logic and UI components. </s>
+- Add a slider to adjust the speed of the game.
+- Add a dropdown to apply different styles to the cells.
+- <s>Add a slider to adjust the dimensions of the grid (rows and columns).</s>
+- Provide an option to toggle grid lines on and off.
+- Add a step-by-step mode to manually advance generations.
