@@ -23,7 +23,6 @@ const Grid = ({ rows, columns, running }) => {
   ));
 
   const updateGrid = useCallback(() => {
-    if (!running) return;
     const nextGrid = grid.map((arr) => [...arr]);
 
     for (let row = 0; row < rows; row++) {
@@ -42,21 +41,26 @@ const Grid = ({ rows, columns, running }) => {
           }
         });
 
-        if (grid[row][col] === 1 && (neighbors < 2 || neighbors > 3)) {
-          nextGrid[row][col] = 0;
-        } else if (grid[row][col] === 0 && neighbors === 3) {
-          nextGrid[row][col] = 1;
+        if (grid[row][col] === 1) {
+          if (neighbors < 2 || neighbors > 3) {
+            nextGrid[row][col] = 0; // Cell dies
+          }
+        } else if (grid[row][col] === 0) {
+          if (neighbors === 3) {
+            nextGrid[row][col] = 1; // Cell becomes alive
+          }
         }
       }
     }
 
     setGrid(nextGrid);
-  }, [grid, rows, columns, running]);
+  }, [grid, rows, columns]);
 
   useEffect(() => {
+    if (!running) return;
     const interval = setInterval(updateGrid, 1000);
     return () => clearInterval(interval);
-  }, [updateGrid]);
+  }, [running, updateGrid]);
 
   const toggleCellState = (row, col) => {
     const newGrid = grid.map((r, rowIndex) =>
@@ -74,6 +78,7 @@ const Grid = ({ rows, columns, running }) => {
           <Cell
             key={`${rowIndex}-${colIndex}`}
             alive={cell}
+            data-testid={`cell-${rowIndex}-${colIndex}`}
             onClick={() => toggleCellState(rowIndex, colIndex)}
           />
         ))

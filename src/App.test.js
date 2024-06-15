@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import App from './App';
 
 test('renders Conway\'s Game of Life title', () => {
@@ -30,6 +29,9 @@ test('resets the grid on Reset button click', () => {
   render(<App />);
   const resetButton = screen.getByText(/Reset/i);
   fireEvent.click(resetButton);
+
+  // We can't directly test the grid state without modifying Grid component,
+  // but we can ensure the button click doesn't break anything.
   const titleElement = screen.getByText(/Conway's Game of Life/i);
   expect(titleElement).toBeInTheDocument();
 });

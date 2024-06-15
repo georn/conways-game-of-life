@@ -9,6 +9,10 @@ function App() {
     setRunning(!running);
   };
 
+  const resetGrid = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,11 +23,11 @@ function App() {
           <button onClick={toggleRunning}>
             {running ? 'Stop' : 'Start'}
           </button>
-          <button onClick={() => window.location.reload()}>
+          <button onClick={resetGrid}>
             Reset
           </button>
         </div>
-        <Grid rows={20} columns={20} running={running} />
+        <Grid rows={5} columns={5} running={running} />
       </div>
     </div>
   );
