@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Grid from './components/Grid';
 import './App.css';
 
@@ -8,8 +8,12 @@ function App() {
   const [columns, setColumns] = useState(5);
   const [newRows, setNewRows] = useState(5);
   const [newColumns, setNewColumns] = useState(5);
+  const gridRef = useRef();
 
   const toggleRunning = () => {
+    if (!running && gridRef.current) {
+      gridRef.current.initializeGridIfEmpty();
+    }
     setRunning(!running);
   };
 
@@ -20,6 +24,10 @@ function App() {
   const applyDimensions = () => {
     setRows(newRows);
     setColumns(newColumns);
+  };
+
+  const handleGridEmpty = () => {
+    setRunning(false);
   };
 
   return (
@@ -63,7 +71,13 @@ function App() {
             </button>
           </div>
         </div>
-        <Grid rows={rows} columns={columns} running={running} />
+        <Grid
+          ref={gridRef}
+          rows={rows}
+          columns={columns}
+          running={running}
+          onEmpty={handleGridEmpty}
+        />
       </div>
     </div>
   );
