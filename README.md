@@ -75,7 +75,7 @@ The project is deployed on Vercel. To deploy your own instance:
 
 ## Future Enhancements
 
-- Add buttons for starting, stopping, and resetting the game.
+- <s> Add buttons for starting, stopping, and resetting the game. </s>
 - Improve the styling for better user experience.
 - Optimize performance for larger grids.
-- Add tests for the grid update logic and UI components.
+- <s> Add tests for the grid update logic and UI components. </s>
