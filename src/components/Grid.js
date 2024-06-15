@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import styled from 'styled-components';
 
 const GridWrapper = styled.div`
@@ -18,7 +18,7 @@ const Cell = styled.div`
   border: 1px solid #ddd;
 `;
 
-const Grid = ({ rows, columns, running }) => {
+const Grid = forwardRef(({ rows, columns, running, onEmpty }, ref) => {
   const [grid, setGrid] = useState(Array.from({ length: rows }, () =>
     Array.from({ length: columns }, () => 0)
   ));
@@ -65,7 +65,10 @@ const Grid = ({ rows, columns, running }) => {
 
   useEffect(() => {
     if (!running) return;
-    const interval = setInterval(updateGrid, 1000);
+    const interval = setInterval(() => {
+      updateGrid();
+      checkIfEmpty();
+    }, 1000);
     return () => clearInterval(interval);
   }, [running, updateGrid]);
 
@@ -77,6 +80,25 @@ const Grid = ({ rows, columns, running }) => {
     );
     setGrid(newGrid);
   };
+
+  const initializeGridIfEmpty = () => {
+    const isEmpty = grid.every(row => row.every(cell => cell === 0));
+    if (isEmpty) {
+      const newGrid = grid.map(row => row.map(() => (Math.random() > 0.7 ? 1 : 0)));
+      setGrid(newGrid);
+    }
+  };
+
+  const checkIfEmpty = () => {
+    const isEmpty = grid.every(row => row.every(cell => cell === 0));
+    if (isEmpty && onEmpty) {
+      onEmpty();
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    initializeGridIfEmpty
+  }));
 
   // Calculate the optimal cell size to fit within the viewport
   const cellSize = `min(calc((100vw - 20px) / ${columns}), calc((100vh - 150px) / ${rows}))`;
@@ -95,6 +117,6 @@ const Grid = ({ rows, columns, running }) => {
       )}
     </GridWrapper>
   );
-};
+});
 
 export default Grid;
