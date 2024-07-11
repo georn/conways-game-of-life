@@ -36,6 +36,13 @@ function App() {
         <h1 className="App-title">Conway's Game of Life</h1>
       </header>
       <div className="App-content">
+        <Grid
+          ref={gridRef}
+          rows={rows}
+          columns={columns}
+          running={running}
+          onEmpty={handleGridEmpty}
+        />
         <div className="Controls-and-Buttons">
           <div className="Controls-container">
             <label>
@@ -69,13 +76,6 @@ function App() {
             </button>
           </div>
         </div>
-        <Grid
-          ref={gridRef}
-          rows={rows}
-          columns={columns}
-          running={running}
-          onEmpty={handleGridEmpty}
-        />
       </div>
     </div>
   );
