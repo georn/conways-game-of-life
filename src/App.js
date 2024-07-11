@@ -36,10 +36,17 @@ function App() {
         <h1 className="App-title">Conway's Game of Life</h1>
       </header>
       <div className="App-content">
+        <Grid
+          ref={gridRef}
+          rows={rows}
+          columns={columns}
+          running={running}
+          onEmpty={handleGridEmpty}
+        />
         <div className="Controls-and-Buttons">
           <div className="Controls-container">
             <label>
-              Rows:
+              Rows: {newRows}
               <input
                 type="range"
                 min="5"
@@ -47,10 +54,9 @@ function App() {
                 value={newRows}
                 onChange={(e) => setNewRows(Number(e.target.value))}
               />
-              <span>{newRows}</span>
             </label>
             <label>
-              Columns:
+              Columns: {newColumns}
               <input
                 type="range"
                 min="5"
@@ -58,7 +64,6 @@ function App() {
                 value={newColumns}
                 onChange={(e) => setNewColumns(Number(e.target.value))}
               />
-              <span>{newColumns}</span>
             </label>
             <button onClick={applyDimensions}>Apply</button>
           </div>
@@ -71,13 +76,6 @@ function App() {
             </button>
           </div>
         </div>
-        <Grid
-          ref={gridRef}
-          rows={rows}
-          columns={columns}
-          running={running}
-          onEmpty={handleGridEmpty}
-        />
       </div>
     </div>
   );

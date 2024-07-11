@@ -15,14 +15,14 @@ describe('Grid component', () => {
     const { container } = render(<Grid rows={5} columns={5} running={false} />);
     const cell = container.querySelector('[data-testid="cell-0-0"]');
 
-    // Cell should initially be dead (white)
-    expect(cell).toHaveStyle('background-color: white');
+    // Cell should initially be dead (background-color: #4e5358)
+    expect(cell).toHaveStyle('background-color: #4e5358');
 
     // Simulate a click to toggle the cell state
     fireEvent.click(cell);
 
-    // Cell should now be alive (black)
-    expect(cell).toHaveStyle('background-color: black');
+    // Cell should now be alive (background-color: #21a1f1)
+    expect(cell).toHaveStyle('background-color: #21a1f1');
   });
 
   test('updates the grid correctly based on rules', async () => {
@@ -42,11 +42,12 @@ describe('Grid component', () => {
     });
 
     // Verify the new state of the grid forms a stable 2x2 block pattern
-    expect(cells[0]).toHaveStyle('background-color: black'); // Top-left corner should be alive
-    expect(cells[1]).toHaveStyle('background-color: black'); // Adjacent cell should be alive
-    expect(cells[5]).toHaveStyle('background-color: black'); // Cell below the top-left corner should be alive
-    expect(cells[6]).toHaveStyle('background-color: black'); // Cell at (1, 1) should be alive
+    expect(cells[0]).toHaveStyle('background-color: #21a1f1'); // Top-left corner should be alive (hover color for alive cells)
+    expect(cells[1]).toHaveStyle('background-color: #21a1f1'); // Adjacent cell should be alive (hover color for alive cells)
+    expect(cells[5]).toHaveStyle('background-color: #21a1f1'); // Cell below the top-left corner should be alive (hover color for alive cells)
+    expect(cells[6]).toHaveStyle('background-color: #21a1f1'); // Cell at (1, 1) should be alive (hover color for alive cells)
   });
+
 
   test('does not update the grid when running is false', () => {
     const { container } = render(<Grid rows={5} columns={5} running={false} />);
@@ -63,10 +64,10 @@ describe('Grid component', () => {
     });
 
     // Verify the state of the grid has not changed
-    expect(cells[0]).toHaveStyle('background-color: black'); // Should still be alive
-    expect(cells[1]).toHaveStyle('background-color: black'); // Should still be alive
-    expect(cells[5]).toHaveStyle('background-color: black'); // Should still be alive
-    expect(cells[6]).toHaveStyle('background-color: white'); // Should still be dead
+    expect(cells[0]).toHaveStyle('background-color: #21a1f1'); // Should still be alive (hover color for alive cells)
+    expect(cells[1]).toHaveStyle('background-color: #21a1f1'); // Should still be alive (hover color for alive cells)
+    expect(cells[5]).toHaveStyle('background-color: #21a1f1'); // Should still be alive (hover color for alive cells)
+    expect(cells[6]).toHaveStyle('background-color: #4e5358'); // Should still be dead (hover color for dead cells)
   });
 
   test('kills a cell due to underpopulation', async () => {
@@ -85,8 +86,8 @@ describe('Grid component', () => {
     });
 
     // Verify the new state of the grid
-    expect(cells[0]).toHaveStyle('background-color: white'); // Should be dead
-    expect(cells[1]).toHaveStyle('background-color: white'); // Should be dead
+    expect(cells[0]).toHaveStyle('background-color: #4e5358'); // Should be dead (hover color for dead cells)
+    expect(cells[1]).toHaveStyle('background-color: #4e5358'); // Should be dead (hover color for dead cells)
   });
 
   test('kills a cell due to overpopulation', async () => {
@@ -108,10 +109,10 @@ describe('Grid component', () => {
     });
 
     // Verify the new state of the grid
-    expect(cells[6]).toHaveStyle('background-color: white'); // Should be dead
-    expect(cells[7]).toHaveStyle('background-color: black'); // Should be alive
-    expect(cells[11]).toHaveStyle('background-color: white'); // Should be dead
-    expect(cells[5]).toHaveStyle('background-color: black'); // Should be alive
-    expect(cells[10]).toHaveStyle('background-color: black'); // Should be alive
+    expect(cells[6]).toHaveStyle('background-color: #4e5358'); // Should be dead (hover color for dead cells)
+    expect(cells[7]).toHaveStyle('background-color: #21a1f1'); // Should be alive (hover color for alive cells)
+    expect(cells[11]).toHaveStyle('background-color: #4e5358'); // Should be dead (hover color for dead cells)
+    expect(cells[5]).toHaveStyle('background-color: #21a1f1'); // Should be alive (hover color for alive cells)
+    expect(cells[10]).toHaveStyle('background-color: #21a1f1'); // Should be alive (hover color for alive cells)
   });
 });

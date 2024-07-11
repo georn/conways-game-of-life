@@ -3,19 +3,32 @@ import styled from 'styled-components';
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(${props => props.columns}, minmax(0, 1fr));
-  grid-template-rows: repeat(${props => props.rows}, minmax(0, 1fr));
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: calc(100vh - 150px);
+  grid-template-columns: repeat(${props => props.columns}, 1fr);
+  grid-template-rows: repeat(${props => props.rows}, 1fr);
+  width: 100vw;
+  height: 100vw;
+  max-width: 100vh;
+  max-height: 100vh;
+  margin: auto;
+  aspect-ratio: 1;
+  background-color: #2c3035;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
 `;
 
 const Cell = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${props => (props.alive ? 'black' : 'white')};
-  border: 1px solid #ddd;
+  background-color: ${props => (props.alive ? '#61dafb' : '#3b3f45')};
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${props => props.alive ? '#21a1f1' : '#4e5358'};
+  }
 `;
 
 const Grid = forwardRef(({ rows, columns, running, onEmpty }, ref) => {
