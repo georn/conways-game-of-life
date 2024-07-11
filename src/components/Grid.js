@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(${props => props.columns}, minmax(0, 1fr));
-  grid-template-rows: repeat(${props => props.rows}, minmax(0, 1fr));
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: calc(100vh - 150px);
+  grid-template-columns: repeat(${props => props.columns}, 1fr);
+  grid-template-rows: repeat(${props => props.rows}, 1fr);
+  width: 95vw;
+  height: 95vw;
+  max-width: 95vh;
+  max-height: 95vh;
+  margin: auto;
+  aspect-ratio: 1;
 `;
 
 const Cell = styled.div`

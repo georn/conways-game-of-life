@@ -39,7 +39,7 @@ function App() {
         <div className="Controls-and-Buttons">
           <div className="Controls-container">
             <label>
-              Rows:
+              Rows: {newRows}
               <input
                 type="range"
                 min="5"
@@ -47,10 +47,9 @@ function App() {
                 value={newRows}
                 onChange={(e) => setNewRows(Number(e.target.value))}
               />
-              <span>{newRows}</span>
             </label>
             <label>
-              Columns:
+              Columns: {newColumns}
               <input
                 type="range"
                 min="5"
@@ -58,7 +57,6 @@ function App() {
                 value={newColumns}
                 onChange={(e) => setNewColumns(Number(e.target.value))}
               />
-              <span>{newColumns}</span>
             </label>
             <button onClick={applyDimensions}>Apply</button>
           </div>
